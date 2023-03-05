@@ -26,7 +26,8 @@ class UserController extends Controller
         abort_if(Gate::denies('users_access'), Response::HTTP_FORBIDDEN, 'Forbidden');
 
         $users = User::with('role')->paginate(5)->appends($request->query());
-        return view('admin.users.index',compact('users'));
+        //return view('admin.users.index',compact('users'));
+        return view('pages.users.index',compact('users'));
 
     }
 

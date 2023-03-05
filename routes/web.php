@@ -36,7 +36,6 @@ Route::group(['prefix'=>"admin",'as' => 'admin.','namespace' => 'App\Http\Contro
     Route::resource('/roles', 'RoleController');
     Route::resource('/permissions', 'PermissionController')->except(['show']);
 
-
 });
 
 

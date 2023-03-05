@@ -24,7 +24,7 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        return view('menu.dashboard.index');
+        return view('pages.dashboard.index');
         //return routes('dashboard.index');
     }
 }

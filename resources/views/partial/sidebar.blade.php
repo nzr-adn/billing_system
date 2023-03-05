@@ -4,7 +4,7 @@
             <li class="nav-item nav-profile">
               <a href="#" class="nav-link">
                 <div class="nav-profile-image">
-                  <img src="assets/images/faces/face1.jpg" alt="profile">
+                  <img src="{{ asset('assets/images/faces/face1.jpg') }}" alt="profile">
                   <span class="login-status online"></span>
                   <!--change to offline or busy as needed-->
                 </div>
@@ -22,15 +22,57 @@
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
-                <span class="menu-title">Basic UI Elements</span>
+              <a class="nav-link" data-bs-toggle="collapse" href="#user-manage" aria-expanded="false" aria-controls="user-manage">
+                <span class="menu-title">User Management</span>
                 <i class="menu-arrow"></i>
                 <i class="mdi mdi-crosshairs-gps menu-icon"></i>
               </a>
-              <div class="collapse" id="ui-basic">
+              <div class="collapse" id="user-manage">
                 <ul class="nav flex-column sub-menu">
-                  <li class="nav-item"> <a class="nav-link" href="pages/ui-features/buttons.html">Buttons</a></li>
-                  <li class="nav-item"> <a class="nav-link" href="pages/ui-features/typography.html">Typography</a></li>
+                  <li class="nav-item"> <a class="nav-link" href="pages/ui-features/buttons.html">Users</a></li>
+                  <li class="nav-item"> <a class="nav-link" href="pages/ui-features/typography.html">Role</a></li>
+                  <li class="nav-item"> <a class="nav-link" href="pages/ui-features/typography.html">Permission</a></li>
+                </ul>
+              </div>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" data-bs-toggle="collapse" href="#master-data" aria-expanded="false" aria-controls="master-data">
+                <span class="menu-title">Master Data</span>
+                <i class="menu-arrow"></i>
+                <i class="mdi mdi-crosshairs-gps menu-icon"></i>
+              </a>
+              <div class="collapse" id="master-data">
+                <ul class="nav flex-column sub-menu">
+                  <li class="nav-item"> <a class="nav-link" href="pages/ui-features/buttons.html">Menu Aplikasi</a></li>
+                  <li class="nav-item"> <a class="nav-link" href="pages/ui-features/typography.html">Jenis Otorisasi</a></li>
+                </ul>
+              </div>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" data-bs-toggle="collapse" href="#distribusi" aria-expanded="false" aria-controls="distribusi">
+                <span class="menu-title">Tempat Distribusi</span>
+                <i class="menu-arrow"></i>
+                <i class="mdi mdi-crosshairs-gps menu-icon"></i>
+              </a>
+              <div class="collapse" id="distribusi">
+                <ul class="nav flex-column sub-menu">
+                  <li class="nav-item"> <a class="nav-link" href="pages/ui-features/buttons.html">MAP POP & Endpoint</a></li>
+                  <li class="nav-item"> <a class="nav-link" href="pages/ui-features/typography.html">Perangkat & Access Point</a></li>
+                  <li class="nav-item"> <a class="nav-link" href="pages/ui-features/typography.html">Router</a></li>
+                </ul>
+              </div>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" data-bs-toggle="collapse" href="#administrasi" aria-expanded="false" aria-controls="administrasi">
+                <span class="menu-title">Administrasi</span>
+                <i class="menu-arrow"></i>
+                <i class="mdi mdi-crosshairs-gps menu-icon"></i>
+              </a>
+              <div class="collapse" id="administrasi">
+                <ul class="nav flex-column sub-menu">
+                  <li class="nav-item"> <a class="nav-link" href="pages/ui-features/buttons.html">Transaksi VA</a></li>
+                  <li class="nav-item"> <a class="nav-link" href="pages/ui-features/typography.html">Invoice</a></li>
+                  <li class="nav-item"> <a class="nav-link" href="pages/ui-features/typography.html">Kewajiban</a></li>
                 </ul>
               </div>
             </li>

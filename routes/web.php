@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
+
+use App\Http\Controllers\DashboardController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -18,6 +20,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+
+// Route::get('/dashboard', 'DashboardController@index')->name('dashboard.index');
+Route::get('/dashboard', [DashboardController::class, 'index']);
+
 Auth::routes();
 
 
@@ -31,6 +37,8 @@ Route::group(['prefix'=>"admin",'as' => 'admin.','namespace' => 'App\Http\Contro
     Route::resource('/permissions', 'PermissionController')->except(['show']);
 
 });
+
+
 
 
 

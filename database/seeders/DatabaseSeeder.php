@@ -18,6 +18,11 @@ class DatabaseSeeder extends Seeder
             PermissionTableSeeder::class,
             RolePermissionTableSeeder::class,
             UsersTableSeeder::class,
+            ProductTypeSeeder::class,
+            ProductSeeder::class,
+            CustomerSeeder::class,
+            InvoiceSeeder::class,
+            PaymentSeeder::class,
         ]);
     }
 }

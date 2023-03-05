@@ -6,7 +6,7 @@ use Haruncpi\LaravelIdGenerator\IdGenerator;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Customer extends Model
+class ProductType extends Model
 {
     use HasFactory;
 
@@ -16,13 +16,12 @@ class Customer extends Model
         static::creating(function (Model $model) {
             if (is_null($model->code)) {
                 $code = IdGenerator::generate([
-                    'table' => 'customers',
+                    'table' => 'product_types',
                     'field' => 'code',
-                    'length' => 11,
-                    'prefix' => 'CUST-']);
+                    'length' => 10,
+                    'prefix' => 'P_TYPE-']);
                 $model->setAttribute('code',$code);
             }
         });
-
     }
 }

@@ -26,6 +26,12 @@
             -ms-flex-positive: 1;
             flex-grow: 1;
             }
+        .page-header {
+            margin: 0 0 0 0;
+        }
+        .card .card-body {
+            padding: 1rem 1rem;
+        }
     </style>
   </head>
   <body>
@@ -63,6 +69,9 @@
       </div>
       <!-- page-body-wrapper ends -->
     </div>
+    <form action="{{ route('logout') }}" method="POST" id="logout-form">
+        @csrf
+    </form>
     <!-- container-scroller -->
     <!-- plugins:js -->
     <!-- <script src="{{ asset('admin_assets/plugins/jquery/dist/jquery.min.js') }}"></script>

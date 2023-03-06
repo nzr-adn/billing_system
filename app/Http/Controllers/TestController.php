@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Repository\CustomerRepository;
+use App\Repository\InvoiceRepository;
+use App\Repository\PaymentRepository;
+use App\Repository\ProductRepository;
 use App\Repository\ProductTypeRepository;
 use Illuminate\Support\Facades\Response;
 
@@ -13,11 +17,24 @@ class TestController extends Controller
      *
      * @return void
      */
-    private $product_type_service;
+    private $productTypeRepository;
+    private $productRepository;
+    private $customerRepository;
+    private $invoiceRepository;
+    private $paymentRepository;
 
-    public function __construct(ProductTypeRepository $product_type_service)
+    public function __construct(ProductTypeRepository $productTypeRepository,
+                                ProductRepository     $productRepository,
+                                CustomerRepository    $customerRepository,
+                                InvoiceRepository     $invoiceRepository,
+                                PaymentRepository     $paymentRepository)
     {
-        $this->product_type_service = $product_type_service;
+        $this->productTypeRepository = $productTypeRepository;
+        $this->productRepository = $productRepository;
+        $this->customerRepository = $customerRepository;
+        $this->invoiceRepository = $invoiceRepository;
+        $this->paymentRepository = $paymentRepository;
+
     }
 
     /**
@@ -27,6 +44,6 @@ class TestController extends Controller
      */
     public function index()
     {
-        return Response::json($this->product_type_service->getAll());
+        return Response::json($this->productTypeRepository->getAll());
     }
 }

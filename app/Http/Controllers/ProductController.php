@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Product\StoreProductRequest;
+use App\Http\Requests\Product\UpdateProductRequest;
 use App\Repository\ProductRepository;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -25,41 +27,41 @@ class ProductController extends Controller
 
     public function create()
     {
-        abort_if(Gate::denies('product_type_create'), Response::HTTP_FORBIDDEN, 'Forbidden');
-        return view('pages.product_types.create');
+        abort_if(Gate::denies('product_create'), Response::HTTP_FORBIDDEN, 'Forbidden');
+        return view('pages.products.create');
     }
 
-    public function store(StoreProductTypeRequest $request)
+    public function store(StoreProductRequest $request)
     {
-        $this->productTypeRepository->create($request->all());
-        return redirect()->route('pages.product_types.index')->with(['status-success' => "New Product Type Created"]);
+        $this->productRepository->create($request->all());
+        return redirect()->route('pages.products.index')->with(['status-success' => "New Product Created"]);
     }
 
     public function show($id)
     {
-        abort_if(Gate::denies('product_type_show'), Response::HTTP_FORBIDDEN, 'Forbidden');
-        $product_type = $this->productTypeRepository->find($id);
-        return view('pages.product_types.show', compact('product_type'));
+        abort_if(Gate::denies('product_show'), Response::HTTP_FORBIDDEN, 'Forbidden');
+        $product = $this->productRepository->find($id);
+        return view('pages.products.show', compact('product'));
     }
 
     public function edit($id)
     {
-        abort_if(Gate::denies('product_type_edit'), Response::HTTP_FORBIDDEN, 'Forbidden');
-        $product_type = $this->productTypeRepository->find($id);
-        return view('pages.product_types.edit', compact('product_type'));
+        abort_if(Gate::denies('product_edit'), Response::HTTP_FORBIDDEN, 'Forbidden');
+        $product = $this->productRepository->find($id);
+        return view('pages.products.edit', compact('product'));
     }
 
-    public function update(UpdateProductTypeRequest $request, $id)
+    public function update(UpdateProductRequest $request, $id)
     {
         $data = $request->except(['_token','_method']);
-        $this->productTypeRepository->update($data, $id);
-        return redirect()->route('pages.product_types.index')->with(['status-success' => "Product Type Updated"]);
+        $this->productRepository->update($data, $id);
+        return redirect()->route('pages.products.index')->with(['status-success' => "Product Updated"]);
     }
 
     public function destroy($id)
     {
-        abort_if(Gate::denies('product_type_delete'), Response::HTTP_FORBIDDEN, 'Forbidden');
-        $this->productTypeRepository->delete($id);
-        return redirect()->back()->with(['status-success' => "Product Type Deleted"]);
+        abort_if(Gate::denies('product_delete'), Response::HTTP_FORBIDDEN, 'Forbidden');
+        $this->productRepository->delete($id);
+        return redirect()->back()->with(['status-success' => "Product Deleted"]);
     }
 }

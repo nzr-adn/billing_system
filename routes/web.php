@@ -38,13 +38,18 @@ Route::group(
         Route::get('/dashboard', [DashboardController::class, 'index']);
         Route::group(['prefix' => "pages", 'as' => 'pages.', 'namespace' => 'App\Http\Controllers', 'middleware' => ['auth', 'AdminPanelAccess']], function () {
 
+            Route::resource('/menu', 'MenuController');
             Route::resource('/users', 'UserController');
             Route::resource('/roles', 'RoleController');
             Route::resource('/permissions', 'PermissionController')->except(['show']);
 
-            Route::get('/', 'HomeController@index')->name('home');
-            Route::resource('/menu', 'MenuController');
-            Route::resource('/users', 'UserController');
+            Route::resource('/producttypes', 'ProductTypeController');
+            Route::resource('/products', 'ProductController');
+            Route::resource('/customers', 'CustomerController');
+            Route::resource('/invoices', 'InvoiceController');
+            Route::resource('/payments', 'PaymentController');
+
+
 
         });
     });

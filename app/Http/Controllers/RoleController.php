@@ -24,7 +24,7 @@ class RoleController extends Controller
 
         $roles = Role::with('permissions')->paginate(5)->appends($request->query());;
 
-        return view('admin.roles.index',compact('roles'));
+        return view('pages.roles.index',compact('roles'));
     }
 
     /**

@@ -37,7 +37,7 @@ class RoleController extends Controller
         abort_if(Gate::denies('role_create'), Response::HTTP_FORBIDDEN, 'Forbidden');
         $permissions = Permission::all()->pluck('name', 'id');
 
-        return view('admin.roles.create', compact('permissions'));
+        return view('pages.roles.create', compact('permissions'));
     }
 
     /**
@@ -51,7 +51,7 @@ class RoleController extends Controller
         $role = Role::create($request->validated());
         $role->permissions()->sync($request->permissions);
 
-        return redirect()->route('admin.roles.index')->with('status-success','New Role Created');
+        return redirect()->route('pages.roles.index')->with('status-success','New Role Created');
     }
 
 
@@ -65,7 +65,7 @@ class RoleController extends Controller
     {
         abort_if(Gate::denies('role_show'), Response::HTTP_FORBIDDEN, 'Forbidden');
 
-        return view('admin.roles.show',compact('role'));
+        return view('pages.roles.show',compact('role'));
     }
 
 
@@ -80,7 +80,7 @@ class RoleController extends Controller
         abort_if(Gate::denies('role_edit'), Response::HTTP_FORBIDDEN, 'Forbidden');
         $permissions = Permission::all()->pluck('name', 'id');
 
-        return view('admin.roles.edit', compact('role','permissions'));
+        return view('pages.roles.edit', compact('role','permissions'));
     }
 
     /**
@@ -95,7 +95,7 @@ class RoleController extends Controller
         $role->update($request->validated());
         $role->permissions()->sync($request->permissions);
 
-        return redirect()->route('admin.roles.index')->with('status-success','Role Updated');
+        return redirect()->route('pages.roles.index')->with('status-success','Role Updated');
     }
 
     /**

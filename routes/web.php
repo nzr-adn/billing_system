@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\Admin\HomeController;
+use App\Http\Controllers\TestController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -21,7 +22,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-
+Route::get('/test', [TestController::class, 'index'])->name('test');
 // Route::get('/dashboard', 'DashboardController@index')->name('dashboard.index');
 // Route::get('/dashboard', [DashboardController::class, 'index']);
 

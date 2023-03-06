@@ -12,4 +12,9 @@ class ProductRepository extends BaseRepository
     {
         parent::__construct($model);
     }
+
+    public function paginate($perPage = 15, $columns = array('*'))
+    {
+        return Product::with('product_type')->paginate($perPage, $columns);
+    }
 }

@@ -29,9 +29,9 @@
               </a>
               <div class="collapse" id="user-manage">
                 <ul class="nav flex-column sub-menu">
-                  <li class="nav-item"> <a class="nav-link" href="pages/ui-features/buttons.html">Users</a></li>
-                  <li class="nav-item"> <a class="nav-link" href="pages/ui-features/typography.html">Role</a></li>
-                  <li class="nav-item"> <a class="nav-link" href="pages/ui-features/typography.html">Permission</a></li>
+                  <li class="nav-item"> <a class="nav-link" href="/admin/users">Users</a></li>
+                  <li class="nav-item"> <a class="nav-link" href="/admin/roles">Role</a></li>
+                  <li class="nav-item"> <a class="nav-link" href="/admin/permissions">Permission</a></li>
                 </ul>
               </div>
             </li>
@@ -43,8 +43,8 @@
               </a>
               <div class="collapse" id="master-data">
                 <ul class="nav flex-column sub-menu">
-                  <li class="nav-item"> <a class="nav-link" href="pages/ui-features/buttons.html">Menu Aplikasi</a></li>
-                  <li class="nav-item"> <a class="nav-link" href="pages/ui-features/typography.html">Jenis Otorisasi</a></li>
+                  <li class="nav-item"> <a class="nav-link" href="pages/menu">Menu Aplikasi</a></li>
+                  <li class="nav-item"> <a class="nav-link" href="pages/jenis-otorisasi">Jenis Otorisasi</a></li>
                 </ul>
               </div>
             </li>

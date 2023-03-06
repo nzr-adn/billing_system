@@ -16,7 +16,7 @@
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="index.html">
+              <a class="nav-link" href="/dashboard">
                 <span class="menu-title">Dashboard</span>
                 <i class="mdi mdi-home menu-icon"></i>
               </a>
@@ -29,9 +29,9 @@
               </a>
               <div class="collapse" id="user-manage">
                 <ul class="nav flex-column sub-menu">
-                  <li class="nav-item"> <a class="nav-link" href="/admin/users">Users</a></li>
-                  <li class="nav-item"> <a class="nav-link" href="/admin/roles">Role</a></li>
-                  <li class="nav-item"> <a class="nav-link" href="/admin/permissions">Permission</a></li>
+                  <li class="nav-item"> <a class="nav-link" href="/pages/users">Users</a></li>
+                  <li class="nav-item"> <a class="nav-link" href="/pages/roles">Role</a></li>
+                  <li class="nav-item"> <a class="nav-link" href="/pages/permissions">Permission</a></li>
                 </ul>
               </div>
             </li>
@@ -43,8 +43,8 @@
               </a>
               <div class="collapse" id="master-data">
                 <ul class="nav flex-column sub-menu">
-                  <li class="nav-item"> <a class="nav-link" href="pages/menu">Menu Aplikasi</a></li>
-                  <li class="nav-item"> <a class="nav-link" href="pages/jenis-otorisasi">Jenis Otorisasi</a></li>
+                  <li class="nav-item"> <a class="nav-link" href="/pages/menu">Menu Aplikasi</a></li>
+                  <li class="nav-item"> <a class="nav-link" href="/pages/jenis-otorisasi">Jenis Otorisasi</a></li>
                 </ul>
               </div>
             </li>
@@ -121,8 +121,8 @@
                 <div class="border-bottom">
                   <h6 class="font-weight-normal mb-3">Projects</h6>
                 </div>
-                <button class="btn btn-block btn-lg btn-gradient-primary mt-4">+ Add a project</button>
-                <div class="mt-4">
+                <button class="btn btn-block btn-lg btn-gradient-primary mt-4">Logout</button>
+                <!-- <div class="mt-4">
                   <div class="border-bottom">
                     <p class="text-secondary">Categories</p>
                   </div>
@@ -130,7 +130,7 @@
                     <li>Free</li>
                     <li>Pro</li>
                   </ul>
-                </div>
+                </div> -->
               </span>
             </li>
           </ul>

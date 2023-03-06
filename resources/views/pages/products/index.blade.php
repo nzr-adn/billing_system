@@ -3,11 +3,11 @@
 @section('content')
 
     <div class="card">
-        <div class="card-header">{{ __('Product Type List') }}</div>
+        <div class="card-header">{{ __('Product List') }}</div>
 
         <div class="card-body">
-            @can('product_type_create')
-                <a href="{{ route('pages.product_types.create') }}" class="btn btn-primary">Add New Product Type</a>
+            @can('product_create')
+                <a href="{{ route('pages.products.create') }}" class="btn btn-primary">Add New Product</a>
             @endcan
 
             <br/><br/>
@@ -18,26 +18,32 @@
                     <th class="text-center">ID</th>
                     <th>Code</th>
                     <th>Name</th>
+                    <th>Speed</th>
+                    <th>Product Type</th>
+                    <th>Price</th>
                     <th>
                         &nbsp;
                     </th>
                 </tr>
-                @forelse ($product_types as $product_type)
+                @forelse ($products as $product)
                     <tr>
-                        <td class="text-center">{{$product_type->id}}</td>
-                        <td>{{$product_type->code}}</td>
-                        <td>{{$product_type->name}}</td>
+                        <td class="text-center">{{$product->id}}</td>
+                        <td>{{$product->code}}</td>
+                        <td>{{$product->name}}</td>
+                        <td>{{$product->speed}} MBPS</td>
+                        <td>{{$product->product_type->name ?? ""}}</td>
+                        <td>{{$product->price}}</td>
                         <td>
-                            @can('product_type_show')
-                                <a href="{{ route('pages.product_types.show', $product_type->id) }}"
+                            @can('product_show')
+                                <a href="{{ route('pages.products.show', $product->id) }}"
                                    class="btn btn-sm btn-success">Show</a>
                             @endcan
-                            @can('product_type_edit')
-                                <a href="{{ route('pages.product_types.edit', $product_type->id) }}"
+                            @can('product_edit')
+                                <a href="{{ route('pages.products.edit', $product->id) }}"
                                    class="btn btn-sm btn-warning">Edit</a>
                             @endcan
-                            @can('product_type_delete')
-                                <form action="{{ route('pages.product_types.destroy', $product_type->id) }}"
+                            @can('product_delete')
+                                <form action="{{ route('pages.products.destroy', $product->id) }}"
                                       class="d-inline-block" method="post">
                                     @csrf
                                     @method('DELETE')
@@ -50,15 +56,15 @@
                     </tr>
                 @empty
                     <tr>
-                        <td colspan="100%" class="text-center text-muted py-3">No Product Type Found</td>
+                        <td colspan="100%" class="text-center text-muted py-3">No Product Found</td>
                     </tr>
                 @endforelse
             </table>
 
 
-            @if($product_types->total() > $product_types->perPage())
+            @if($products->total() > $products->perPage())
                 <br><br>
-                {{$product_types->links()}}
+                {{$products->links()}}
             @endif
 
         </div>

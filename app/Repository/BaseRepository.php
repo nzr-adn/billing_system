@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class BaseRepository implements BaseRepositoryInterface
 {
+
     protected $model;
 
     /**
@@ -40,5 +41,10 @@ class BaseRepository implements BaseRepositoryInterface
     public function find($id, $column = array('*'))
     {
         return $this->model->find($id, $column);
+    }
+
+    public function paginate($perPage = 15, $columns = array('*'))
+    {
+        return $this->model->paginate($perPage, $columns);
     }
 }

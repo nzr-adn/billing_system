@@ -43,7 +43,7 @@ Route::group(
             Route::resource('/roles', 'RoleController');
             Route::resource('/permissions', 'PermissionController')->except(['show']);
 
-            Route::resource('/producttypes', 'ProductTypeController');
+            Route::resource('/product_types', 'ProductTypeController');
             Route::resource('/products', 'ProductController');
             Route::resource('/customers', 'CustomerController');
             Route::resource('/invoices', 'InvoiceController');

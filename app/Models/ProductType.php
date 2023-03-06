@@ -24,4 +24,9 @@ class ProductType extends Model
             }
         });
     }
+
+    protected $fillable = [
+        'code',
+        'name'
+        ];
 }

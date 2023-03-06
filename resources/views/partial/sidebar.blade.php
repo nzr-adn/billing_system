@@ -25,13 +25,13 @@
               <a class="nav-link" data-bs-toggle="collapse" href="#user-manage" aria-expanded="false" aria-controls="user-manage">
                 <span class="menu-title">User Management</span>
                 <i class="menu-arrow"></i>
-                <i class="mdi mdi-crosshairs-gps menu-icon"></i>
+                <i class="mdi mdi-contacts menu-icon"></i>
               </a>
               <div class="collapse" id="user-manage">
                 <ul class="nav flex-column sub-menu">
-                  <li class="nav-item"> <a class="nav-link" href="pages/ui-features/buttons.html">Users</a></li>
-                  <li class="nav-item"> <a class="nav-link" href="pages/ui-features/typography.html">Role</a></li>
-                  <li class="nav-item"> <a class="nav-link" href="pages/ui-features/typography.html">Permission</a></li>
+                  <li class="nav-item"> <a class="nav-link" href="/admin/users">Users</a></li>
+                  <li class="nav-item"> <a class="nav-link" href="/admin/roles">Role</a></li>
+                  <li class="nav-item"> <a class="nav-link" href="/admin/permissions">Permission</a></li>
                 </ul>
               </div>
             </li>
@@ -39,12 +39,12 @@
               <a class="nav-link" data-bs-toggle="collapse" href="#master-data" aria-expanded="false" aria-controls="master-data">
                 <span class="menu-title">Master Data</span>
                 <i class="menu-arrow"></i>
-                <i class="mdi mdi-crosshairs-gps menu-icon"></i>
+                <i class="mdi mdi-format-list-bulleted menu-icon"></i>
               </a>
               <div class="collapse" id="master-data">
                 <ul class="nav flex-column sub-menu">
-                  <li class="nav-item"> <a class="nav-link" href="pages/ui-features/buttons.html">Menu Aplikasi</a></li>
-                  <li class="nav-item"> <a class="nav-link" href="pages/ui-features/typography.html">Jenis Otorisasi</a></li>
+                  <li class="nav-item"> <a class="nav-link" href="pages/menu">Menu Aplikasi</a></li>
+                  <li class="nav-item"> <a class="nav-link" href="pages/jenis-otorisasi">Jenis Otorisasi</a></li>
                 </ul>
               </div>
             </li>
@@ -66,7 +66,7 @@
               <a class="nav-link" data-bs-toggle="collapse" href="#administrasi" aria-expanded="false" aria-controls="administrasi">
                 <span class="menu-title">Administrasi</span>
                 <i class="menu-arrow"></i>
-                <i class="mdi mdi-crosshairs-gps menu-icon"></i>
+                <i class="mdi mdi-currency-usd menu-icon"></i>
               </a>
               <div class="collapse" id="administrasi">
                 <ul class="nav flex-column sub-menu">

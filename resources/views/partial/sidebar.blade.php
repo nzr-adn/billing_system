@@ -25,7 +25,7 @@
               <a class="nav-link" data-bs-toggle="collapse" href="#user-manage" aria-expanded="false" aria-controls="user-manage">
                 <span class="menu-title">User Management</span>
                 <i class="menu-arrow"></i>
-                <i class="mdi mdi-crosshairs-gps menu-icon"></i>
+                <i class="mdi mdi-contacts menu-icon"></i>
               </a>
               <div class="collapse" id="user-manage">
                 <ul class="nav flex-column sub-menu">
@@ -39,7 +39,7 @@
               <a class="nav-link" data-bs-toggle="collapse" href="#master-data" aria-expanded="false" aria-controls="master-data">
                 <span class="menu-title">Master Data</span>
                 <i class="menu-arrow"></i>
-                <i class="mdi mdi-crosshairs-gps menu-icon"></i>
+                <i class="mdi mdi-format-list-bulleted menu-icon"></i>
               </a>
               <div class="collapse" id="master-data">
                 <ul class="nav flex-column sub-menu">
@@ -66,7 +66,7 @@
               <a class="nav-link" data-bs-toggle="collapse" href="#administrasi" aria-expanded="false" aria-controls="administrasi">
                 <span class="menu-title">Administrasi</span>
                 <i class="menu-arrow"></i>
-                <i class="mdi mdi-crosshairs-gps menu-icon"></i>
+                <i class="mdi mdi-currency-usd menu-icon"></i>
               </a>
               <div class="collapse" id="administrasi">
                 <ul class="nav flex-column sub-menu">

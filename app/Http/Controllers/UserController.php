@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\MasterData;
+namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\UpdateUserRequest;
@@ -14,7 +14,7 @@ use App\Http\Requests\UpdateUserPhotoRequest;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
-class MenuController extends Controller
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -23,11 +23,11 @@ class MenuController extends Controller
      */
     public function index(Request $request)
     {
-        // abort_if(Gate::denies('users_access'), Response::HTTP_FORBIDDEN, 'Forbidden');
+        abort_if(Gate::denies('users_access'), Response::HTTP_FORBIDDEN, 'Forbidden');
 
-        // $users = User::with('role')->paginate(5)->appends($request->query());
+        $users = User::with('role')->paginate(5)->appends($request->query());
         //return view('admin.users.index',compact('users'));
-        return view('pages.menu.index');
+        return view('pages.users.index',compact('users'));
 
     }
 
@@ -38,7 +38,10 @@ class MenuController extends Controller
      */
     public function create()
     {
+        abort_if(Gate::denies('user_create'), Response::HTTP_FORBIDDEN, 'Forbidden');
 
+        $roles = Role::pluck('title','id');
+        return view('admin.users.create',compact('roles'));
     }
 
     /**
@@ -49,7 +52,8 @@ class MenuController extends Controller
      */
     public function store(StoreUserRequest $request)
     {
-
+        User::create($request->validated());
+        return redirect()->route('admin.users.index')->with(['status-success' => "New User Created"]);
     }
 
 
@@ -61,7 +65,9 @@ class MenuController extends Controller
      */
     public function show(User $user)
     {
+        abort_if(Gate::denies('user_show'), Response::HTTP_FORBIDDEN, 'Forbidden');
 
+        return view('admin.users.show',compact('user'));
     }
 
     /**
@@ -72,7 +78,10 @@ class MenuController extends Controller
      */
     public function edit(User $user)
     {
+        abort_if(Gate::denies('user_edit'), Response::HTTP_FORBIDDEN, 'Forbidden');
 
+        $roles = Role::pluck('title','id');
+        return view('admin.users.edit',compact('user','roles'));
     }
 
 
@@ -85,7 +94,8 @@ class MenuController extends Controller
      */
     public function update(UpdateUserRequest $request, User $user)
     {
-
+        $user->update(array_filter($request->validated()));
+        return redirect()->route('admin.users.index')->with(['status-success' => "User Updated"]);
     }
 
 
@@ -97,6 +107,9 @@ class MenuController extends Controller
      */
     public function destroy(User $user)
     {
+        abort_if(Gate::denies('user_delete'), Response::HTTP_FORBIDDEN, 'Forbidden');
 
+        $user->delete();
+        return redirect()->back()->with(['status-success' => "User Deleted"]);
     }
 }

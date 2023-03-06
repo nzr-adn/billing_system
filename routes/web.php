@@ -6,6 +6,8 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\TestController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -21,7 +23,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-
+Route::get('/test', [TestController::class, 'index'])->name('test');
 // Route::get('/dashboard', 'DashboardController@index')->name('dashboard.index');
 // Route::get('/dashboard', [DashboardController::class, 'index']);
 
@@ -29,12 +31,12 @@ Auth::routes();
 
 
 Route::group(
-    ['middleware' => ['auth','AdminPanelAccess']],
-    function() {
+    ['middleware' => ['auth', 'AdminPanelAccess']],
+    function () {
 
         Route::get('/', [HomeController::class, 'index'])->name('home');
         Route::get('/dashboard', [DashboardController::class, 'index']);
-    Route::group(['prefix'=>"pages",'as' => 'pages.','namespace' => 'App\Http\Controllers','middleware' => ['auth','AdminPanelAccess']], function () {
+        Route::group(['prefix' => "pages", 'as' => 'pages.', 'namespace' => 'App\Http\Controllers', 'middleware' => ['auth', 'AdminPanelAccess']], function () {
 
             Route::resource('/users', 'UserController');
             Route::resource('/roles', 'RoleController');
@@ -45,7 +47,7 @@ Route::group(
             Route::resource('/users', 'UserController');
 
         });
-});
+    });
 
 
 

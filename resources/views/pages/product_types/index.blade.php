@@ -18,7 +18,6 @@
                     <th class="text-center">ID</th>
                     <th>Code</th>
                     <th>Name</th>
-                    <th>Desc</th>
                     <th>
                         &nbsp;
                     </th>
@@ -28,7 +27,6 @@
                         <td class="text-center">{{$product_type->id}}</td>
                         <td>{{$product_type->code}}</td>
                         <td>{{$product_type->name}}</td>
-                        <td>{{$product_type->desc}}</td>
                         <td>
                             @can('product_type_show')
                                 <a href="{{ route('pages.product_types.show', $product_type->id) }}"

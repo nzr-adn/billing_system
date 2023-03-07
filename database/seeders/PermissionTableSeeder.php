@@ -41,27 +41,31 @@ class PermissionTableSeeder extends Seeder
             ['name' => 'product_type_edit',],
             ['name' => 'product_type_delete',],
             ['name' => 'product_type_create',],
+            ['name' => 'product_type_show',],
             // product permissions
             ['name' => 'product_access',],
             ['name' => 'product_edit',],
             ['name' => 'product_delete',],
             ['name' => 'product_create',],
+            ['name' => 'product_show',],
             // customer permissions
             ['name' => 'customer_access',],
             ['name' => 'customer_edit',],
             ['name' => 'customer_delete',],
             ['name' => 'customer_create',],
+            ['name' => 'customer_show',],
             // invoice permissions
             ['name' => 'invoice_access',],
             ['name' => 'invoice_edit',],
             ['name' => 'invoice_delete',],
             ['name' => 'invoice_create',],
+            ['name' => 'invoice_show',],
             // payment permissions
             ['name' => 'payment_access',],
             ['name' => 'payment_edit',],
             ['name' => 'payment_delete',],
             ['name' => 'payment_create',],
-
+            ['name' => 'payment_show',],
         ];
 
         foreach ($permissions as $permission) {

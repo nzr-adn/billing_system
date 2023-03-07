@@ -20,8 +20,8 @@ class CreateCustomersTable extends Migration
             $table->string('desc')->nullable();
             $table->integer('product_id')->nullable();
             $table->string('ip')->nullable();
-            $table->double('sla',3,2)->nullable();
-            $table->double('bill_amt', 10, 2)->default(0);
+            $table->integer('sla')->default(0);
+            $table->bigInteger('bill_amt')->default(0);
             $table->timestamps();
         });
     }

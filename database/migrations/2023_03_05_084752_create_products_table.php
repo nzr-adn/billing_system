@@ -20,7 +20,7 @@ class CreateProductsTable extends Migration
             $table->string('desc')->nullable();
             $table->integer('speed')->default(0);
             $table->integer('product_type_id')->nullable();
-            $table->double('price', 10, 2)->default(0);
+            $table->bigInteger('price')->default(0);
             $table->timestamps();
         });
     }

@@ -18,9 +18,9 @@ class CreateInvoicesTable extends Migration
             $table->string('documentno')->unique();
             $table->string('desc')->nullable();
             $table->date('invoice_date')->nullable();
-            $table->double('invoice_amt', 10, 2)->default(0);
-            $table->double('tax_amt', 10, 2)->default(0);
-            $table->double('total_amt', 10, 2)->default(0);
+            $table->bigInteger('invoice_amt')->default(0);
+            $table->bigInteger('tax_amt')->default(0);
+            $table->bigInteger('total_amt')->default(0);
             $table->timestamps();
         });
     }

@@ -18,9 +18,9 @@ class CreatePaymentsTable extends Migration
             $table->string('documentno')->unique();
             $table->string('desc')->nullable();
             $table->date('payment_date')->nullable();
-            $table->double('pay_amt', 10, 2)->default(0);
-            $table->double('tax_amt', 10, 2)->default(0);
-            $table->double('total_amt', 10, 2)->default(0);
+            $table->bigInteger('pay_amt')->default(0);
+            $table->bigInteger('tax_amt')->default(0);
+            $table->bigInteger('total_amt')->default(0);
             $table->timestamps();
         });
     }

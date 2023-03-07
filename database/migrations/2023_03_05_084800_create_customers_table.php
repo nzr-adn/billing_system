@@ -15,13 +15,13 @@ class CreateCustomersTable extends Migration
     {
         Schema::create('customers', function (Blueprint $table) {
             $table->id();
+            $table->integer('client_id')->nullable();
             $table->string('code')->unique();
             $table->string('name');
             $table->string('desc')->nullable();
             $table->integer('product_id')->nullable();
             $table->string('ip')->nullable();
             $table->integer('sla')->default(0);
-            $table->bigInteger('bill_amt')->default(0);
             $table->timestamps();
         });
     }

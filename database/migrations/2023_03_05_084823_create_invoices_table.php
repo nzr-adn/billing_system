@@ -15,12 +15,14 @@ class CreateInvoicesTable extends Migration
     {
         Schema::create('invoices', function (Blueprint $table) {
             $table->id();
+            $table->integer('client_id')->nullable();
             $table->string('documentno')->unique();
             $table->string('desc')->nullable();
             $table->date('invoice_date')->nullable();
-            $table->double('invoice_amt', 10, 2)->default(0);
-            $table->double('tax_amt', 10, 2)->default(0);
-            $table->double('total_amt', 10, 2)->default(0);
+            $table->bigInteger('invoice_amt')->nullable();
+            $table->bigInteger('tax_amt')->nullable();
+            $table->bigInteger('total_amt')->nullable();
+            $table->integer('customer_id')->nullable();
             $table->timestamps();
         });
     }

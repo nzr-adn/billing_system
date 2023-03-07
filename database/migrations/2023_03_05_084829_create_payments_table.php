@@ -15,12 +15,14 @@ class CreatePaymentsTable extends Migration
     {
         Schema::create('payments', function (Blueprint $table) {
             $table->id();
+            $table->integer('client_id')->nullable();
             $table->string('documentno')->unique();
             $table->string('desc')->nullable();
             $table->date('payment_date')->nullable();
-            $table->double('pay_amt', 10, 2)->default(0);
-            $table->double('tax_amt', 10, 2)->default(0);
-            $table->double('total_amt', 10, 2)->default(0);
+            $table->bigInteger('pay_amt')->nullable();
+            $table->bigInteger('tax_amt')->nullable();
+            $table->bigInteger('total_amt')->nullable();
+            $table->integer('invoice_id')->nullable();
             $table->timestamps();
         });
     }

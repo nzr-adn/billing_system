@@ -1,144 +1,96 @@
-var ChartColor = ["#5D62B4", "#54C3BE", "#EF726F", "#F9C446", "rgb(93.0, 98.0, 180.0)", "#21B7EC", "#04BCCC"];
-var primaryColor = getComputedStyle(document.body).getPropertyValue('--primary');
-var secondaryColor = getComputedStyle(document.body).getPropertyValue('--secondary');
-var successColor = getComputedStyle(document.body).getPropertyValue('--success');
-var warningColor = getComputedStyle(document.body).getPropertyValue('--warning');
-var dangerColor = getComputedStyle(document.body).getPropertyValue('--danger');
-var infoColor = getComputedStyle(document.body).getPropertyValue('--info');
-var darkColor = getComputedStyle(document.body).getPropertyValue('--dark');
-var lightColor = getComputedStyle(document.body).getPropertyValue('--light');
+/* Copyright (c) 2015 year, Volodymyr Kuznetsov
 
-(function($) {
-  'use strict';
-  $(function() {
-    var body = $('body');
-    var contentWrapper = $('.content-wrapper');
-    var scroller = $('.container-scroller');
-    var footer = $('.footer');
-    var sidebar = $('.sidebar');
+ Permission to use, copy, modify, and/or distribute this software for any
+ purpose with or without fee is hereby granted, provided that the above
+ copyright notice and this permission notice appear in all copies.
 
-    //Add active class to nav-link based on url dynamically
-    //Active class can be hard coded directly in html file also as required
+ THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES
+ WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF
+ MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR
+ ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
+ WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN
+ ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
+ OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE. */
 
-    function addActiveClass(element) {
-      if (current === "") {
-        //for root url
-        if (element.attr('href').indexOf("index.html") !== -1) {
-          element.parents('.nav-item').last().addClass('active');
-          if (element.parents('.sub-menu').length) {
-            element.closest('.collapse').addClass('show');
-            element.addClass('active');
-          }
-        }
-      } else {
-        //for other url
-        if (element.attr('href').indexOf(current) !== -1) {
-          element.parents('.nav-item').last().addClass('active');
-          if (element.parents('.sub-menu').length) {
-            element.closest('.collapse').addClass('show');
-            element.addClass('active');
-          }
-          if (element.parents('.submenu-item').length) {
-            element.addClass('active');
-          }
-        }
-      }
+
+'use strict';
+
+var _ = require('underscore');
+
+
+var _make_logger = function(level) {
+    return function(message) {
+        console.log(Date.now().toString() + ' [' + level + ']: ' + message);
+    };
+};
+
+
+var log = {
+    trace: _make_logger('DEBUG'),
+    debug: _make_logger('DEBUG'),
+    info: _make_logger('INFO'),
+    warn: _make_logger('WARNING'),
+    warning: _make_logger('WARNING'),
+    error: _make_logger('ERROR'),
+    critical: _make_logger('CRITICAL')
+};
+
+
+var construct = function(constructor, args) {
+    function F() {
+        return constructor.apply(this, args);
+    }
+    F.prototype = constructor.prototype;
+    return new F();
+};
+
+
+var LambdaExpressionError = function(message) {
+    Error.apply(this, arguments);
+    this.name = 'LambdaExpressionError';
+    this.message = message;
+};
+
+LambdaExpressionError.prototype = Error.prototype;
+LambdaExpressionError.prototype.constructor = LambdaExpressionError;
+
+
+var lambda = function(definition) {
+    var lambda_expr_parts = definition.match(/^(.+)\s*->\s*(.+)$/);
+    if (!lambda_expr_parts || lambda_expr_parts.length !== 3) {
+        throw new LambdaExpressionError(
+            'Invalid lambda definition: ' + definition
+        );
+    }
+    var lambda_args = _.filter(lambda_expr_parts[1].split(/\s+/),
+        function(arg) {
+            return !_.isEmpty(arg);
+        });
+
+    if (lambda_args.length === 0) {
+        throw new LambdaExpressionError(
+            'Lambda function arguments list is empty'
+        );
     }
 
-    var current = location.pathname.split("/").slice(-1)[0].replace(/^\/|\/$/g, '');
-    $('.nav li a', sidebar).each(function() {
-      var $this = $(this);
-      addActiveClass($this);
-    })
+    var lambda_body = lambda_expr_parts[2].trim();
+    if (!lambda_body) {
+        throw new LambdaExpressionError(
+            'Lambda function body is empty'
+        );
+    }
 
-    $('.horizontal-menu .nav li a').each(function() {
-      var $this = $(this);
-      addActiveClass($this);
-    })
+    return construct(Function, lambda_args.concat(['return ' + lambda_body]));
+};
 
-    //Close other submenu in sidebar on opening any
 
-    sidebar.on('show.bs.collapse', '.collapse', function() {
-      sidebar.find('.collapse.show').collapse('hide');
+(function() {
+    _.mixin({ 'lambda': lambda, 'l': lambda });
+    _.extend(exports, {
+        log: log,
+        construct: construct,
+        lambda: lambda,
+        l: lambda,
+        LambdaExpressionError: LambdaExpressionError
     });
-
-
-    //Change sidebar and content-wrapper height
-    applyStyles();
-
-    function applyStyles() {
-      //Applying perfect scrollbar
-      if (!body.hasClass("rtl")) {
-        if (body.hasClass("sidebar-fixed")) {
-          var fixedSidebarScroll = new PerfectScrollbar('#sidebar .nav');
-        }
-      }
-    }
-
-    $('[data-toggle="minimize"]').on("click", function() {
-      if ((body.hasClass('sidebar-toggle-display')) || (body.hasClass('sidebar-absolute'))) {
-        body.toggleClass('sidebar-hidden');
-      } else {
-        body.toggleClass('sidebar-icon-only');
-      }
-    });
-
-    //checkbox and radios
-    $(".form-check label,.form-radio label").append('<i class="input-helper"></i>');
-
-    //fullscreen
-    $("#fullscreen-button").on("click", function toggleFullScreen() {
-      if ((document.fullScreenElement !== undefined && document.fullScreenElement === null) || (document.msFullscreenElement !== undefined && document.msFullscreenElement === null) || (document.mozFullScreen !== undefined && !document.mozFullScreen) || (document.webkitIsFullScreen !== undefined && !document.webkitIsFullScreen)) {
-        if (document.documentElement.requestFullScreen) {
-          document.documentElement.requestFullScreen();
-        } else if (document.documentElement.mozRequestFullScreen) {
-          document.documentElement.mozRequestFullScreen();
-        } else if (document.documentElement.webkitRequestFullScreen) {
-          document.documentElement.webkitRequestFullScreen(Element.ALLOW_KEYBOARD_INPUT);
-        } else if (document.documentElement.msRequestFullscreen) {
-          document.documentElement.msRequestFullscreen();
-        }
-      } else {
-        if (document.cancelFullScreen) {
-          document.cancelFullScreen();
-        } else if (document.mozCancelFullScreen) {
-          document.mozCancelFullScreen();
-        } else if (document.webkitCancelFullScreen) {
-          document.webkitCancelFullScreen();
-        } else if (document.msExitFullscreen) {
-          document.msExitFullscreen();
-        }
-      }
-    })
-    if ($.cookie('purple-free-banner')!="true") {
-      document.querySelector('#proBanner').classList.add('d-flex');
-      document.querySelector('.navbar').classList.remove('fixed-top');
-    }
-    else {
-      document.querySelector('#proBanner').classList.add('d-none');
-      document.querySelector('.navbar').classList.add('fixed-top');
-    }
-    
-    if ($( ".navbar" ).hasClass( "fixed-top" )) {
-      document.querySelector('.page-body-wrapper').classList.remove('pt-0');
-      document.querySelector('.navbar').classList.remove('pt-5');
-    }
-    else {
-      document.querySelector('.page-body-wrapper').classList.add('pt-0');
-      document.querySelector('.navbar').classList.add('pt-5');
-      document.querySelector('.navbar').classList.add('mt-3');
-      
-    }
-    document.querySelector('#bannerClose').addEventListener('click',function() {
-      document.querySelector('#proBanner').classList.add('d-none');
-      document.querySelector('#proBanner').classList.remove('d-flex');
-      document.querySelector('.navbar').classList.remove('pt-5');
-      document.querySelector('.navbar').classList.add('fixed-top');
-      document.querySelector('.page-body-wrapper').classList.add('proBanner-padding-top');
-      document.querySelector('.navbar').classList.remove('mt-3');
-      var date = new Date();
-      date.setTime(date.getTime() + 24 * 60 * 60 * 1000); 
-      $.cookie('purple-free-banner', "true", { expires: date });
-    });
-  });
-})(jQuery);
+}());

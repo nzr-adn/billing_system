@@ -25,6 +25,13 @@ class Product extends Model
         });
     }
 
+    protected $fillable = [
+        'code',
+        'name',
+        'product_type_id',
+        'speed',
+        'price'
+    ];
     public function product_type(){
         return $this->belongsTo(ProductType::class, 'product_type_id');
     }

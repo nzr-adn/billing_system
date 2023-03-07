@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\Product\StoreProductRequest;
 use App\Http\Requests\Product\UpdateProductRequest;
 use App\Repository\ProductRepository;
+use App\Repository\ProductTypeRepository;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Gate;
@@ -12,10 +13,13 @@ use Illuminate\Support\Facades\Gate;
 class ProductController extends Controller
 {
     private $productRepository;
+    private $productTypeRepository;
 
-    public function __construct(ProductRepository $productRepository)
+    public function __construct(ProductRepository $productRepository,
+                                ProductTypeRepository $productTypeRepository)
     {
         $this->productRepository = $productRepository;
+        $this->productTypeRepository = $productTypeRepository;
     }
 
     public function index(Request $request)
@@ -28,12 +32,14 @@ class ProductController extends Controller
     public function create()
     {
         abort_if(Gate::denies('product_create'), Response::HTTP_FORBIDDEN, 'Forbidden');
-        return view('pages.products.create');
+        $product_types = $this->productTypeRepository->getAll();
+        return view('pages.products.create', compact('product_types'));
     }
 
     public function store(StoreProductRequest $request)
     {
-        $this->productRepository->create($request->all());
+        $data = $request->except(['_token','_method']);
+        $this->productRepository->create($data);
         return redirect()->route('pages.products.index')->with(['status-success' => "New Product Created"]);
     }
 

@@ -4,7 +4,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Purple Admin</title>
+    <title>Billing System Admin</title>
     <!-- plugins:css -->
     <link rel="stylesheet" href="{{ asset('assets/vendors/mdi/css/materialdesignicons.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/vendors/css/vendor.bundle.base.css') }}">
@@ -13,6 +13,7 @@
     <!-- End plugin css for this page -->
     <!-- inject:css -->
     <!-- endinject -->
+
     <!-- Layout styles -->
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
     <!-- End layout styles -->
@@ -33,6 +34,15 @@
             padding: 1rem 1rem;
         }
     </style>
+     <!-- Datatables styles -->
+     <link rel="stylesheet" type="text/css" href="{{ asset('assets/DataTables/css/custom-pagination.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/DataTables/css_old/responsive.bootstrap.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/DataTables/css/dataTables.bootstrap.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/DataTables/css/fixedHeader.bootstrap.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/DataTables/css/responsive.bootstrap.min.css') }}">
+    <!-- End Datatables styles -->
+
+    @yield('add_after_css')
   </head>
   <body>
     <div class="container-scroller">
@@ -93,5 +103,17 @@
     <script src="{{ asset('assets/js/dashboard.js') }}"></script>
     <script src="{{ asset('assets/js/todolist.js') }}"></script>
     <!-- End custom js for this page -->
+    <!--Datatables -->
+
+    <!--Custom  Datatables -->
+    <script type="text/javascript" language="javascript" src="{{ asset('assets/DataTables/js/jquery-3.5.1.js') }}"></script>
+	<script type="text/javascript" language="javascript" src="{{ asset('assets/DataTables/js/jquery.dataTables.min.js') }}"></script>
+	<script type="text/javascript" language="javascript" src="{{ asset('assets/DataTables/js/dataTables.bootstrap.min.js') }}"></script>
+	<script type="text/javascript" language="javascript" src="{{ asset('assets/DataTables/js/dataTables.fixedHeader.min.js') }}"></script>
+
+	<script type="text/javascript" language="javascript" src="{{ asset('assets/DataTables/js/dataTables.responsive.min.js') }}"></script>
+	<script type="text/javascript" language="javascript" src="{{ asset('assets/DataTables/js/responsive.bootstrap.min.js') }}"></script>
+
+    @yield('add_after_js')
   </body>
 </html>

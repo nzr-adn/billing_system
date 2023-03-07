@@ -54,7 +54,8 @@ class ProductController extends Controller
     {
         abort_if(Gate::denies('product_edit'), Response::HTTP_FORBIDDEN, 'Forbidden');
         $product = $this->productRepository->find($id);
-        return view('pages.products.edit', compact('product'));
+        $product_types = $this->productTypeRepository->getAll();
+        return view('pages.products.edit', compact('product', 'product_types'));
     }
 
     public function update(UpdateProductRequest $request, $id)

@@ -58,8 +58,13 @@
                     <label for="product_type" class="col-md-4 col-form-label text-md-right">{{ __('Product Type') }}</label>
 
                     <div class="col-md-6">
-                        <input id="product_type" type="text" class="form-control @error('product_type') is-invalid @enderror"
-                               name="product_type" value="{{ old('product_type') }}" autocomplete="product_type">
+                        <select id="product_type_id" type="text" class="form-control @error('product_type_id') is-invalid @enderror" name="product_type_id" required autocomplete="product_type_id" autofocus>
+                            <option value=""  selected hidden>Please Select</option>
+
+                            @foreach ($product_types as $product_type)
+                                <option value="{{$product_type->id}}" {{ (old('product_type_id', '') == $product_type->id ) ? 'selected' : '' }}>{{$product_type->name}}</option>
+                            @endforeach
+                        </select>
 
                         @error('product_type')
                         <span class="invalid-feedback" role="alert">

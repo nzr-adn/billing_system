@@ -12,3 +12,4 @@ php artisan make:model Flight --migration
 php artisan make:migration create_users_table --create=users
 php artisan make:seeder UserSeeder
 composer dump-autoload
+php artisan make:request ProductTypes/StoreProductTypeRequest
